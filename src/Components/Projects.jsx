@@ -18,7 +18,7 @@ const Projects = () => {
   tech: ["React.js", "Tailwind CSS"],
   image: "/public/Hotel.png",
   github: "#",
-  live: "hotel-management-seven-lovat.vercel.app",
+  live: "https://hotel-management-51ld.vercel.app",
 },
     {
       title: "Animated Portfolio",
@@ -34,7 +34,7 @@ const Projects = () => {
       tech: ["React.js", "css"],
        image: "/public/task.png",
       github: "#",
-      live: "task-manager-alpha-three-56.vercel.app",
+      live: "",
     },
   ];
 
