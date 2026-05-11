@@ -1,104 +1,165 @@
 import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const Projects = () => {
   const projects = [
     {
       title: "ProStore",
-      desc: "E-commerce Website with advanced filtering.",
+      desc: "Modern e-commerce platform with filtering, cart system and premium UI.",
       tech: ["React", "Redux", "Tailwind"],
-      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+      github: "#",
+      live: "#",
     },
     {
       title: "Hotel Booking UI",
-      desc: "Luxurious stay booking experience.",
+      desc: "Luxury hotel booking experience with animations and elegant design.",
       tech: ["Next.js", "Framer Motion"],
-      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+      github: "#",
+      live: "#",
     },
     {
       title: "Animated Portfolio",
-      desc: "3D interactions and smooth scroll.",
+      desc: "Interactive portfolio with smooth animations and 3D effects.",
       tech: ["React", "Three.js"],
-      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      github: "#",
+      live: "#",
     },
     {
       title: "Task Manager",
-      desc: "Efficiency and productivity tracker.",
+      desc: "Powerful productivity tracker with task management system.",
       tech: ["Node.js", "MongoDB"],
-      link: "#",
+      image:
+        "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b",
+      github: "#",
+      live: "#",
     },
   ];
 
   return (
-    <section id="projects" className="py-24 px-6 bg-[#030014]">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="projects"
+      className="relative py-32 px-6 bg-[#030014] overflow-hidden"
+    >
+      {/* Background Glow */}
+      <div className="absolute top-20 left-10 w-80 h-80 bg-purple-500/20 blur-[120px]" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-cyan-500/20 blur-[120px]" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="mb-16">
-          <motion.p 
+        {/* Heading */}
+        <div className="mb-20 text-center">
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-purple-500 font-mono tracking-widest text-sm mb-2"
+            className="uppercase tracking-[0.35em] text-sm text-purple-400 font-medium"
           >
-            SELECTED WORKS
+            Selected Works
           </motion.p>
-          <h2 className="text-4xl md:text-6xl font-black text-white">
-            Featured <span className="text-gray-500 italic">Projects</span>
-          </h2>
+
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-5xl md:text-6xl font-black text-white mt-4"
+          >
+            Featured{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </motion.h2>
+
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+            A collection of modern web applications focused on user experience,
+            performance and beautiful interfaces.
+          </p>
         </div>
 
-        {/* Grid */}
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-10">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
               className="group relative"
             >
-              {/* Project Card */}
-              <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-white/10 p-1">
-                <div className="bg-[#0a0a0a] rounded-[2.4rem] overflow-hidden">
-                  
-                  {/* Image Placeholder / Visual */}
-                  <div className="h-64 bg-gradient-to-tr from-purple-900/20 to-blue-900/20 flex items-center justify-center relative overflow-hidden">
-                    <div className="text-6xl group-hover:scale-125 transition-transform duration-500 opacity-20">🚀</div>
-                    
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-purple-600/80 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center gap-4">
-                      <button className="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-200 transition">Demo</button>
-                      <button className="border border-white text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-white hover:text-black transition">Code</button>
-                    </div>
-                  </div>
+              {/* Glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition duration-700" />
 
-                  {/* Content */}
-                  <div className="p-8">
-                    <div className="flex gap-2 mb-4">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="text-[10px] font-bold tracking-widest uppercase text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {project.desc}
-                    </p>
+              {/* Card */}
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl">
+                
+                {/* Image */}
+                <div className="relative h-72 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+                  />
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-4">
+                    
+                    <a
+                      href={project.live}
+                      className="flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full font-semibold hover:scale-105 transition"
+                    >
+                      <FaExternalLinkAlt />
+                      Live Demo
+                    </a>
+
+                    <a
+                      href={project.github}
+                      className="flex items-center gap-2 border border-white text-white px-5 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition"
+                    >
+                      <FaGithub />
+                      Code
+                    </a>
                   </div>
                 </div>
-              </div>
 
-              {/* Decorative Glow */}
-              <div className="absolute -inset-2 bg-purple-500/5 blur-2xl group-hover:bg-purple-500/10 transition-colors -z-10" />
+                {/* Content */}
+                <div className="p-8">
+                  
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-3 mb-5">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs uppercase tracking-widest text-purple-300 border border-purple-500/20 bg-purple-500/10 px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 leading-relaxed">
+                    {project.desc}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
-        
-        {/* Footer Link */}
+
+        {/* Bottom Button */}
         <div className="mt-20 text-center">
-          <button className="text-gray-500 hover:text-white transition-colors border-b border-gray-800 pb-2 text-sm tracking-widest uppercase font-bold">
-            View All Experiments
+          <button className="px-8 py-4 rounded-full border border-white/10 text-white font-semibold hover:bg-white hover:text-black transition duration-300">
+            View All Projects
           </button>
         </div>
       </div>

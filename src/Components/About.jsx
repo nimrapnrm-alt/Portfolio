@@ -1,104 +1,160 @@
 import { motion } from "framer-motion";
-import profileImg from "/my image.jpeg"; // 👈 TOP par import karo
+import profileImg from "/my image.jpeg";
+import { FaReact, FaLaptopCode, FaPalette } from "react-icons/fa";
 
 const About = () => {
-  const stats = [
-    { label: "Experience", value: "1+ Year" },
-    { label: "Projects", value: "15+" },
-    { label: "Focus", value: "UI/UX" },
+  const cards = [
+    {
+      icon: <FaReact />,
+      title: "Frontend Development",
+      desc: "Building modern & responsive interfaces using React ecosystem.",
+    },
+    {
+      icon: <FaPalette />,
+      title: "UI/UX Design",
+      desc: "Designing elegant and user-focused digital experiences.",
+    },
+    {
+      icon: <FaLaptopCode />,
+      title: "Clean Code",
+      desc: "Writing scalable, maintainable and optimized code structure.",
+    },
   ];
 
   return (
     <section
       id="about"
-      className="py-24 px-6 relative overflow-hidden bg-[#030014]"
+      className="relative py-32 px-6 bg-[#050816] overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Section Heading */}
-        <div className="flex flex-col items-center mb-16">
-          <h2 className="text-sm uppercase tracking-[0.5em] text-purple-500 font-bold mb-2">
-            Discovery
-          </h2>
-          <div className="h-[2px] w-12 bg-purple-500 mb-4"></div>
-          <h3 className="text-4xl md:text-5xl font-black text-white">
+      {/* BACKGROUND */}
+      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 blur-[140px] rounded-full" />
+
+      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-500/10 blur-[140px] rounded-full" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* HEADING */}
+        <div className="text-center mb-24">
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="uppercase tracking-[0.4em] text-sm text-purple-400 font-semibold mb-4"
+          >
             About Me
-          </h3>
+          </motion.p>
+
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-5xl md:text-6xl font-black text-white"
+          >
+            Passionate About
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              Modern Frontend
+            </span>
+          </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* LEFT SIDE IMAGE */}
+        {/* MAIN GRID */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          
+          {/* IMAGE SIDE */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative group"
+            transition={{ duration: 0.8 }}
+            className="relative flex justify-center"
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            {/* GLOW */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 blur-3xl rounded-full" />
 
-            <div className="relative bg-black border border-white/10 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+            {/* IMAGE CARD */}
+            <div className="relative w-[350px] sm:w-[420px] rounded-[3rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-2xl">
+              
               <img
                 src={profileImg}
                 alt="Nimra Zulfqar"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-[550px] object-cover"
               />
 
-              <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-                <p className="text-purple-400 font-mono text-sm">
-                  {"<p> Hello World! </p>"}
+              {/* OVERLAY CARD */}
+              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10">
+                <p className="text-purple-400 text-sm font-medium">
+                  Frontend Developer
                 </p>
-                <p className="text-gray-300 text-sm mt-2 font-light italic">
-                  "I build things for the web."
+
+                <h3 className="text-2xl font-bold text-white mt-2">
+                  Nimra Zulfqar
+                </h3>
+
+                <p className="text-gray-300 text-sm mt-3 leading-relaxed">
+                  Creating premium user experiences with React &
+                  modern frontend technologies.
                 </p>
               </div>
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE CONTENT */}
+          {/* CONTENT SIDE */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
+            transition={{ duration: 0.8 }}
           >
-            <p className="text-xl text-gray-200 font-medium leading-relaxed">
-              I am a{" "}
-              <span className="text-purple-500 font-bold italic">
+            {/* TOP TEXT */}
+            <p className="text-lg leading-relaxed text-gray-300">
+              I’m a{" "}
+              <span className="text-white font-semibold">
                 BSCS Graduate
               </span>{" "}
-              and passionate Frontend Developer who loves transforming ideas
-              into high-performance web interfaces.
+              and passionate frontend developer focused on building
+              modern, responsive and visually stunning web experiences.
             </p>
 
-            <p className="text-gray-400 leading-relaxed">
-              My focus is not only on writing clean code, but also on creating
-              engaging user experiences. I specialize in the React ecosystem,
-              ensuring that every pixel and every animation serves a meaningful
-              purpose.
+            <p className="mt-6 text-gray-400 leading-relaxed">
+              My goal is to combine clean code with beautiful design to
+              create interfaces that are not only functional but also
+              memorable for users. I enjoy working with React,
+              Tailwind CSS and modern animation libraries.
             </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-6">
-              {stats.map((stat, index) => (
-                <div
+            {/* CARDS */}
+            <div className="grid gap-5 mt-12">
+              {cards.map((card, index) => (
+                <motion.div
                   key={index}
-                  className="p-4 bg-white/5 rounded-2xl border border-white/5 text-center"
+                  whileHover={{ y: -5 }}
+                  className="group p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-purple-500/30 transition duration-500"
                 >
-                  <h4 className="text-2xl font-bold text-white">
-                    {stat.value}
-                  </h4>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-500 mt-1">
-                    {stat.label}
-                  </p>
-                </div>
+                  <div className="flex items-start gap-5">
+                    
+                    {/* ICON */}
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-2xl text-white shrink-0">
+                      {card.icon}
+                    </div>
+
+                    {/* TEXT */}
+                    <div>
+                      <h4 className="text-xl font-bold text-white mb-2">
+                        {card.title}
+                      </h4>
+
+                      <p className="text-gray-400 leading-relaxed">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
 
-            <div className="pt-8">
+            {/* BUTTON */}
+            <div className="mt-12">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-purple-400 font-bold hover:gap-4 transition-all"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold hover:scale-105 transition duration-300"
               >
-                Learn more about my process <span className="text-xl">→</span>
+                Let’s Work Together
               </a>
             </div>
           </motion.div>

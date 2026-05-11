@@ -1,140 +1,139 @@
 import { motion } from "framer-motion";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 
-const iconVariant = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
-};
-
-const containerVariant = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 }
-  }
-};
-
 const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 px-6 relative bg-[#030014] overflow-hidden"
+      className="relative py-32 px-6 bg-[#030014] overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-purple-600/5 blur-[120px] -z-10" />
+      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-purple-600/10 blur-[160px] rounded-full" />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Heading */}
+        <div className="text-center mb-20">
+          <h2 className="text-sm uppercase tracking-[0.4em] text-purple-400 font-semibold">
+            Contact
+          </h2>
+
+          <h3 className="text-5xl md:text-6xl font-black text-white mt-4">
+            Let’s Work{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              Together
+            </span>
+          </h3>
+
+          <p className="text-gray-400 mt-6 max-w-xl mx-auto">
+            Have an idea, project or opportunity? Let’s build something amazing
+            together 🚀
+          </p>
+        </div>
+
+        {/* GRID */}
         <div className="grid lg:grid-cols-2 gap-16 items-start">
+          
+          {/* LEFT SIDE */}
+          <div className="space-y-8">
 
-          {/* Left Side */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariant}
-            className="space-y-8"
-          >
-            {/* Heading */}
-            <motion.div variants={iconVariant}>
-              <h2 className="text-sm uppercase tracking-[0.5em] text-purple-500 font-bold mb-2">
-                Connect
-              </h2>
-              <h3 className="text-5xl font-black text-white">
-                Let’s Start a <br />
-                <span className="text-gray-500 text-4xl">Conversation</span>
-              </h3>
-              <p className="mt-6 text-gray-400 text-lg leading-relaxed max-w-md">
-                Do you have a vision, or just a question? Feel free to reach out
-                — I’ll do my best to respond within 24 hours.
+            {/* EMAIL CARD */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition"
+            >
+              <p className="text-xs text-gray-500 uppercase tracking-widest">
+                Email
               </p>
+
+              <h4 className="text-white font-semibold mt-2">
+                nimra.pnrm@gmail.com
+              </h4>
             </motion.div>
 
-            <motion.div
-              className="space-y-6"
-              variants={containerVariant}
-            >
-              {/* Email */}
-              <motion.div
-                variants={iconVariant}
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-4 group cursor-pointer"
-              >
-                <motion.div
-                  whileHover={{
-                    boxShadow: "0 0 25px rgba(168,85,247,0.6), 0 0 50px rgba(168,85,247,0.3)"
-                  }}
-                  className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-300"
-                >
-                  <span className="text-purple-500">📧</span>
-                </motion.div>
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest">Email</p>
-                  <p className="text-white font-medium">nimra.pnrm@gmail.com</p>
-                </div>
-              </motion.div>
+            {/* SOCIAL CARDS */}
+            <div className="grid gap-5">
 
               {/* LinkedIn */}
-              <motion.div
-                variants={iconVariant}
-                whileHover={{ scale: 1.1 }}
-                className="flex items-center gap-4 group cursor-pointer"
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                whileHover={{ x: 8 }}
+                className="flex items-center gap-5 p-5 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition"
               >
-                <motion.div
-                  whileHover={{
-                    boxShadow: "0 0 25px rgba(168,85,247,0.8), 0 0 60px rgba(168,85,247,0.4)"
-                  }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center transition-all duration-300"
-                >
-                  <FaLinkedinIn className="text-white text-lg" />
-                </motion.div>
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest">LinkedIn</p>
-                  <a
-                    href="https://linkedin.com/in/YOUR_USERNAME"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white font-medium hover:text-purple-400 transition"
-                  >
-                    linkedin.com/in/YOUR_USERNAME
-                  </a>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white">
+                  <FaLinkedinIn />
                 </div>
-              </motion.div>
+
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-widest">
+                    LinkedIn
+                  </p>
+                  <p className="text-white font-medium">
+                    Connect with me professionally
+                  </p>
+                </div>
+              </motion.a>
 
               {/* GitHub */}
-              <motion.div
-                variants={iconVariant}
-                whileHover={{ scale: 1.1 }}
-                className="flex items-center gap-4 group cursor-pointer"
+              <motion.a
+                href="https://github.com"
+                target="_blank"
+                whileHover={{ x: 8 }}
+                className="flex items-center gap-5 p-5 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-purple-500/30 transition"
               >
-                <motion.div
-                  whileHover={{
-                    boxShadow: "0 0 25px rgba(168,85,247,0.8), 0 0 60px rgba(168,85,247,0.4)"
-                  }}
-                  className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center transition-all duration-300"
-                >
-                  <FaGithub className="text-white text-lg" />
-                </motion.div>
-                <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest">GitHub</p>
-                  <a
-                    href="https://github.com/YOUR_USERNAME"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white font-medium hover:text-purple-400 transition"
-                  >
-                    github.com/YOUR_USERNAME
-                  </a>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white">
+                  <FaGithub />
                 </div>
-              </motion.div>
 
-            </motion.div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-widest">
+                    GitHub
+                  </p>
+                  <p className="text-white font-medium">
+                    Check my projects & code
+                  </p>
+                </div>
+              </motion.a>
+            </div>
+
+            {/* SMALL NOTE */}
+            <p className="text-gray-500 text-sm italic">
+              Usually I reply within 24 hours ⚡
+            </p>
+          </div>
+
+          {/* RIGHT SIDE FORM */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-2xl"
+          >
+            <form className="space-y-6">
+              
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full p-4 rounded-2xl bg-black/40 border border-white/10 text-white focus:border-purple-500 outline-none"
+              />
+
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full p-4 rounded-2xl bg-black/40 border border-white/10 text-white focus:border-purple-500 outline-none"
+              />
+
+              <textarea
+                rows="5"
+                placeholder="Tell me about your project..."
+                className="w-full p-4 rounded-2xl bg-black/40 border border-white/10 text-white focus:border-purple-500 outline-none resize-none"
+              />
+
+              <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold hover:scale-[1.02] transition">
+                Send Message 🚀
+              </button>
+            </form>
           </motion.div>
-
-          {/* Right Side - Form */}
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-[2rem] shadow-2xl" > <form className="space-y-5"> <div className="grid md:grid-cols-2 gap-5"> <input type="text" placeholder="Enter your Name..." className="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-purple-500" /> <input type="email" placeholder="Enter your Email..." className="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-purple-500" /> </div> <textarea placeholder="Tell me about your project..." rows="4" className="w-full bg-black/40 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-purple-500 resize-none" /> <button className="w-full py-4 bg-purple-600 hover:bg-purple-700 text-white font-black uppercase tracking-widest rounded-2xl transition-all active:scale-[0.98]"> Send Message 🚀 </button> </form> </motion.div>
-
-
-
-
         </div>
       </div>
     </section>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt4, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("Home");
+  const [active, setActive] = useState("About");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,62 +16,133 @@ const Navbar = () => {
   const navLinks = ["About", "Projects", "Skills", "Contact"];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] flex justify-center p-6">
-      {/* Main Glass Capsule */}
-      <nav className={`
-        flex items-center justify-between px-2 py-2 rounded-full transition-all duration-500 ease-in-out
-        ${scrolled 
-          ? "w-full max-w-4xl bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_0_20px_rgba(168,85,247,0.15)]" 
-          : "w-full max-w-5xl bg-transparent border border-transparent"}
-      `}>
-        
-        {/* Brand/Logo with Neon Glow */}
-       <div className="pl-6 group cursor-pointer">
-  <div className="relative">
-    {/* Aapka Logo Image */}
-    <img 
-      src="NZ_LOGO.png" 
-      alt="Nimra Zulfqar Logo" 
-      className="h-10 w-auto object-contain relative z-10 transition-transform duration-300 group-hover:scale-110" 
-    />
-    
-    {/* Glow Effect Jo Aapne Manga Tha */}
-    <div className="absolute -inset-2 bg-purple-500/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-  </div>
-</div>
+    <header className="fixed top-0 left-0 w-full z-[100] flex justify-center px-4 py-5">
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.7 }}
+        className={`
+          flex items-center justify-between rounded-full transition-all duration-500
+          ${
+            scrolled
+              ? "w-full max-w-5xl bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_30px_rgba(168,85,247,0.15)] px-4 py-3"
+              : "w-full max-w-6xl bg-transparent px-4 py-4"
+          }
+        `}
+      >
+        {/* Logo */}
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          className="relative group cursor-pointer"
+        >
+          <img
+            src="NZ_LOGO.png"
+            alt="Logo"
+            className="h-11 relative z-10"
+          />
 
-        {/* Navigation Links */}
-        <ul className="hidden md:flex items-center gap-1">
+          <div className="absolute -inset-3 bg-purple-500/30 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-full" />
+        </motion.div>
+
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-2">
           {navLinks.map((item) => (
             <li key={item}>
               <a
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setActive(item)}
                 className={`
-                  relative px-6 py-2 text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300
-                  ${active === item ? "text-white" : "text-gray-500 hover:text-gray-200"}
+                  relative px-6 py-3 rounded-full text-xs uppercase font-bold tracking-[0.2em] transition-all
+                  ${
+                    active === item
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
+                  }
                 `}
               >
-                {item}
                 {active === item && (
-                  <span className="absolute inset-0 bg-white/5 rounded-full border border-white/10 -z-10 shadow-[0_0_15px_rgba(255,255,255,0.05)]"></span>
+                  <motion.span
+                    layoutId="active-pill"
+                    className="absolute inset-0 bg-white/10 border border-white/10 rounded-full"
+                  />
                 )}
+
+                <span className="relative z-10">{item}</span>
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Professional "Work" Status Button */}
-        <div className="pr-2">
-          <button className="relative group overflow-hidden px-8 py-3 rounded-full bg-white text-black text-[10px] font-black uppercase tracking-widest transition-all hover:pr-10">
-            <span className="relative z-10">Let's Talk</span>
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-              →
-            </span>
-            <div className="absolute inset-0 bg-purple-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0"></div>
-          </button>
-        </div>
-      </nav>
+        {/* CTA Button */}
+        <motion.a
+          href="#contact"
+          onClick={() => setActive("Let's Talk")}
+          whileHover={{ scale: 1.05 }}
+          className={`
+            hidden md:block relative overflow-hidden px-8 py-3 rounded-full
+            text-xs font-black uppercase tracking-widest group transition-all
+            ${
+              active === "Let's Talk"
+                ? "bg-purple-600 text-white"
+                : "bg-white text-black"
+            }
+          `}
+        >
+          <span className="relative z-10 group-hover:text-white transition">
+            Let’s Talk
+          </span>
+
+          <div className="absolute inset-0 bg-purple-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+        </motion.a>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-white text-3xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <HiX /> : <HiMenuAlt4 />}
+        </button>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            className="absolute top-24 w-[90%] bg-black/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:hidden"
+          >
+            <ul className="flex flex-col gap-6">
+              {navLinks.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => {
+                    setActive(item);
+                    setMenuOpen(false);
+                  }}
+                  className="text-white text-sm uppercase tracking-widest font-semibold hover:text-purple-400 transition"
+                >
+                  {item}
+                </a>
+              ))}
+            </ul>
+
+            {/* Mobile CTA */}
+            <a
+              href="#contact"
+              onClick={() => {
+                setActive("Let's Talk");
+                setMenuOpen(false);
+              }}
+              className="mt-8 block text-center w-full py-4 rounded-full bg-white text-black font-bold uppercase tracking-widest hover:bg-purple-500 hover:text-white transition"
+            >
+              Let’s Talk
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
